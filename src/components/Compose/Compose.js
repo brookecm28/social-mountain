@@ -1,3 +1,4 @@
+import Axios from 'axios';
 import React, { Component } from 'react';
 import ProfileIcon from 'react-icons/lib/md/person-outline';
 
@@ -21,10 +22,17 @@ export default class Compose extends Component {
   }
 
   createPost() {
+    const {text}  = this.state
+    const {createPostFn} = this.props
 
+    createPostFn(text)
+    this.setState({
+      text: ""
+    })
   }
 
   render() {
+
     // Destructuring
     const { text } = this.state;
 
@@ -45,7 +53,7 @@ export default class Compose extends Component {
         </div>
 
         <div className="Compose__bottom">
-          <button onClick={ this.createPost }>Compose</button>
+          <button onClick={ this.createPost}>Compose</button>
         </div>
       </section>
     )
